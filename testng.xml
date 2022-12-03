@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="BDDSuite"  >
+    <listeners>
+        <listener class-name="com.test.configuration.retry.TestRetryListner"/>
+    </listeners>
+    <test  name="CRmCromeTest" >
+        <classes>
+            <class name="com.test.TestRunner"/>
+        </classes>
+    </test> <!-- Test -->
+</suite> <!-- Suite -->

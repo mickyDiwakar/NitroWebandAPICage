@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.diwakar</groupId>
+	<artifactId>cucumberAdvframework</artifactId>
+	<version>1.0-SNAPSHOT</version>
+
+	<properties>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<restassured.version>5.1.1</restassured.version>
+		<threadCount>2</threadCount>
+	</properties>
+
+	<!--<profiles>
+		<profile>
+			<id>chrome-grid</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+
+						<configuration>
+							<systemPropertyVariables>
+								<browser>chrome</browser>
+								<execType>grid</execType>
+							</systemPropertyVariables>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>firefox-grid</id>
+			<build>
+				<plugins>
+					&lt;!&ndash; https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-compiler-plugin &ndash;&gt;
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-compiler-plugin</artifactId>
+
+
+					</plugin>
+
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+
+						<configuration>
+							<testFailureIgnore>true</testFailureIgnore>
+
+							<properties>
+								<property>
+									<name>dataproviderthreadcount</name>
+									<value>${threadCount}</value>
+								</property>
+							</properties>
+							<systemPropertyVariables>
+								<browser>firefox</browser>
+								<execType>grid</execType>
+							</systemPropertyVariables>
+						</configuration>
+					</plugin>
+					<plugin>
+						<groupId>net.masterthought</groupId>
+						<artifactId>maven-cucumber-reporting</artifactId>
+						<version>3.15.0</version>
+						<executions>
+							<execution>
+								<id>execution</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>generate</goal>
+								</goals>
+								<configuration>
+									<projectName>cucumberAdvframework</projectName>  &lt;!&ndash; Replace with project name &ndash;&gt;
+									<outputDirectory>target/cucumber-reports/advanced-reports</outputDirectory>
+									<cucumberOutput>target/cucumber-reports/cucumberTestReport.json</cucumberOutput>
+									<buildNumber>1</buildNumber>
+
+									&lt;!&ndash;<checkBuildResult>true</checkBuildResult>
+									<parallelTesting>true</parallelTesting>&ndash;&gt;
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>-->
+	<build>
+		<plugins>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+
+				<configuration>
+					<testFailureIgnore>true</testFailureIgnore>
+
+					<properties>
+						<property>
+							<name>dataproviderthreadcount</name>
+							<value>${threadCount}</value>
+						</property>
+					</properties>
+					<!--<systemPropertyVariables>
+						<browser>firefox</browser>
+						<execType>grid</execType>
+					</systemPropertyVariables>-->
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>net.masterthought</groupId>
+				<artifactId>maven-cucumber-reporting</artifactId>
+				<version>3.15.0</version>
+				<executions>
+					<execution>
+						<id>execution</id>
+						<phase>test</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<projectName>cucumberAdvframework</projectName>
+							<outputDirectory>target/cucumber-reports/advanced-reports</outputDirectory>
+							<cucumberOutput>target/cucumber-reports/cucumberTestReport.json</cucumberOutput>
+							<buildNumber>1</buildNumber>
+							<parallelTesting>true</parallelTesting>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>3.141.59</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
+		<dependency>
+			<groupId>io.github.bonigarcia</groupId>
+			<artifactId>webdrivermanager</artifactId>
+			<version>5.2.3</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>5.2.1</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>5.2.1</version>
+		</dependency>
+
+
+		<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java -->
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-java</artifactId>
+			<version>6.10.4</version>
+		</dependency>
+
+
+		<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-testng -->
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-testng</artifactId>
+			<version>6.10.4</version>
+		</dependency>
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-jvm-deps</artifactId>
+			<version>1.0.6</version>
+			<scope>provided</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
+		<dependency>
+			<groupId>io.github.bonigarcia</groupId>
+			<artifactId>webdrivermanager</artifactId>
+			<version>5.2.1</version>
+		</dependency>
+
+		<!--		<dependency>-->
+<!--			<groupId>io.cucumber</groupId>-->
+<!--			<artifactId>cucumber-guice</artifactId>-->
+<!--			<version>6.8.1</version>-->
+<!--			<scope>test</scope>-->
+<!--		</dependency>-->
+
+		<!-- https://mvnrepository.com/artifact/com.google.inject/guice -->
+		<!--<dependency>
+			<groupId>com.google.inject</groupId>
+			<artifactId>guice</artifactId>
+			<version>5.0.1</version>
+		</dependency>-->
+		<!--&lt;!&ndash; https://mvnrepository.com/artifact/picocontainer/picocontainer &ndash;&gt;
+		<dependency>
+			<groupId>picocontainer</groupId>
+			<artifactId>picocontainer</artifactId>
+			<version>3</version>
+		</dependency>-->
+		<!-- https://mvnrepository.com/artifact/org.picocontainer/picocontainer -->
+		<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-picocontainer -->
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-picocontainer</artifactId>
+			<version>6.10.4</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-core</artifactId>
+			<version>6.10.4</version> <!-- 1.2.5 -->
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/net.masterthought/cucumber-reporting -->
+		<dependency>
+			<groupId>net.masterthought</groupId>
+			<artifactId>cucumber-reporting</artifactId>
+			<version>5.6.1</version>
+		</dependency>
+
+			<dependency>
+				<groupId>com.googlecode.json-simple</groupId>
+				<artifactId>json-simple</artifactId>
+				<version>1.1.1</version>
+			</dependency>
+
+
+		<dependency>
+			<groupId>tech.grasshopper</groupId>
+			<artifactId>extentreports-cucumber6-adapter</artifactId>
+			<version>2.8.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.assertj</groupId>
+			<artifactId>assertj-core</artifactId>
+			<version>3.19.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<version>2.14.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>2.14.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.aeonbits.owner</groupId>
+			<artifactId>owner-java8</artifactId>
+			<version>1.0.12</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.24</version>
+			<scope>provided</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.rest-assured/rest-assured -->
+		<dependency>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>rest-assured</artifactId>
+			<version>${restassured.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.rest-assured/json-path -->
+		<dependency>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>json-path</artifactId>
+			<version>${restassured.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.rest-assured/json-schema-validator -->
+		<dependency>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>json-schema-validator</artifactId>
+			<version>${restassured.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
+		<dependency>
+			<groupId>com.googlecode.json-simple</groupId>
+			<artifactId>json-simple</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+
+
+	</dependencies>
+
+
+
+</project>
+
+
+		<!--                <configuration>-->
+		<!--                    <forkCount>4</forkCount>-->
+		<!--                    <reuseForks>false</reuseForks>-->
+		<!--                    <parallel>methods</parallel>-->
+		<!--                    <threadCount>4</threadCount>-->
+		<!--                    <perCoreThreadCount>false</perCoreThreadCount>-->
+		<!--                    <useUnlimitedThreads>true</useUnlimitedThreads>-->
+		<!--                    <argLine>-Xmx1024m -XX:MaxPermSize=256m</argLine>-->
+		<!--                </configuration>-->
+
+		<!--<executions>-->
+		<!--<execution>-->
+		<!--    <id>chrome</id>-->
+		<!--    <configuration>-->
+		<!--        <properties>-->
+		<!--            <property>-->
+		<!--                <name>dataproviderthreadcount</name>-->
+		<!--                <value>20</value>-->
+		<!--            </property>-->
+		<!--            <property>-->
+		<!--                <name>browser</name>-->
+		<!--                <value>chrome</value>-->
+		<!--            </property>-->
+		<!--            <property>-->
+		<!--                <name>execType</name>-->
+		<!--                <value>grid</value>-->
+		<!--            </property>-->
+		<!--        </properties>-->
+		<!--    </configuration>-->
+		<!--</execution>-->
+		<!--<execution>-->
+		<!--    <id>firefox</id>-->
+		<!--    <configuration>-->
+		<!--        <properties>-->
+		<!--            <property>-->
+		<!--                <name>dataproviderthreadcount</name>-->
+		<!--                <value>20</value>-->
+		<!--            </property>-->
+		<!--            <property>-->
+		<!--                <name>browser</name>-->
+		<!--                <value>firefox</value>-->
+		<!--            </property>-->
+		<!--            <property>-->
+		<!--                <name>execType</name>-->
+		<!--                <value>grid</value>-->
+		<!--            </property>-->
+		<!--        </properties>-->
+		<!--    </configuration>-->
+		<!--</execution>-->
+		<!--</executions>-->
+		<!--<configuration>-->
+
+		<!--</configuration>-->
