@@ -4,6 +4,7 @@ package com.test.configuration.driver;
 import com.test.configuration.configManager.ManageConfig;
 import com.test.configuration.enums.BrowserType;
 import com.test.utils.Constant;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -40,9 +41,9 @@ public class BrowserFactory {
        BrowserType browserType= getBrowserType(browser);
         if(BrowserType.CHROME.equals(browserType)){
             System.out.println(System.getProperty("user.dir"));
-            System.setProperty(Constant.WEB_CHROME_DRIVER, Constant.USER_DIR+"/browserdrivers/chromedriver.exe");
+           // System.setProperty(Constant.WEB_CHROME_DRIVER, Constant.USER_DIR+"/browserdrivers/chromedriver.exe");
+            WebDriverManager.chromedriver().setup();
             ChromeOptions options =new ChromeOptions();
-            options.setCapability(CapabilityType.ACCEPT_SSL_CERTS,true);
             options.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS,true);
             options.addArguments("start-maximized");
             options.addArguments("disable-infobars");
@@ -56,14 +57,14 @@ public class BrowserFactory {
         } else if (BrowserType.FIREFOX.equals(browserType)) {
             System.setProperty(Constant.WEB_FF_DRIVER, Constant.USER_DIR+"/browserdrivers/chromedriver.exe");
             FirefoxOptions options =new FirefoxOptions();
-            options.setCapability(CapabilityType.ACCEPT_SSL_CERTS,true);
+
             options.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS,true);
             driver=new FirefoxDriver(options);
 
 
         } else if (BrowserType.EDGE.equals(browserType)) {
-            DesiredCapabilities capabilities=DesiredCapabilities.chrome();
-            capabilities.setCapability(CapabilityType.ACCEPT_SSL_CERTS,true);
+            //DesiredCapabilities capabilities=DesiredCapabilities.chrome();
+         //   capabilities.setCapability(CapabilityType.ACCEPT_SSL_CERTS,true);
 
         }
 

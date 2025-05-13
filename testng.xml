@@ -3,10 +3,12 @@
 <suite name="BDDSuite"  >
     <listeners>
         <listener class-name="com.test.configuration.retry.TestRetryListner"/>
+
     </listeners>
     <test  name="CRmCromeTest" >
         <classes>
             <class name="com.test.TestRunner"/>
+            <class name="com.test.TestZReRunner"/>
         </classes>
     </test> <!-- Test -->
 </suite> <!-- Suite -->

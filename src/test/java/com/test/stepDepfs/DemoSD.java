@@ -11,7 +11,9 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
+import java.time.Duration;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -23,7 +25,7 @@ public class DemoSD {
      //   DataTable dt = null;
         List<Map<String,String>>map=dt.asMaps(String.class,String.class);
         WebElement ele=wdriver.findElement(By.id("yearbox"));
-        WebDriverWait wait=new WebDriverWait(wdriver,15);
+        WebDriverWait wait=new WebDriverWait(wdriver,Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOf(ele));
         /*driver.findElement(By.xpath("//input[@class='form-control ng-pristine ng-invalid ng-invalid-required ng-touched']"))
                 .sendKeys("diwakar");*/
@@ -69,11 +71,15 @@ public class DemoSD {
         wdriver=new ChromeDriver();
         wdriver.manage().deleteAllCookies();
         wdriver.manage().window().maximize();
-        wdriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        wdriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         wdriver.get(url);
         wdriver.findElement(By.xpath("//input[contains(@placeholder,'Email')]")).sendKeys("diwisuji@gmail.com");
         wdriver.findElement(By.xpath("//a[contains(@href,'Register')]")).click();
     }
 
 
+    @Given("user launched the url{int}")
+    public void userLaunchedTheUrl(int arg0) {
+        Assert.assertTrue(false);
+    }
 }

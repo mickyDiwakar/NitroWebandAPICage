@@ -19,7 +19,7 @@ public class DriverManager {
         return driver;
     }
 
-    /*private static ThreadLocal<WebDriver>tldriver=new ThreadLocal<>();
+    private static ThreadLocal<WebDriver>tldriver=new ThreadLocal<>();
     public static  WebDriver getthreadlocaldriver() {
         System.out.println(Thread.currentThread());
         return tldriver.get();
@@ -31,5 +31,4 @@ public class DriverManager {
     public static void unload(){
         tldriver.remove();
     }
-*/
 }

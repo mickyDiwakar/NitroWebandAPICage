@@ -42,5 +42,7 @@ public class LoginPageStepDef extends BasePage {
     }
 
 
-
+    @Given("user launch the url")
+    public void userLaunchTheUrl() {
+    }
 }

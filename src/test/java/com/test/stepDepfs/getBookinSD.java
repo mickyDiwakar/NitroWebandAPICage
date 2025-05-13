@@ -41,6 +41,7 @@ public class getBookinSD extends BasePage {
     public void iWillVerifyTheRespose() {
 
         System.out.println(getMap("scName"));
+        System.out.println("scenarioName"+scenario.getName());
         System.out.println(Thread.currentThread().getId()+".........."+getMap("first"));
     }
 

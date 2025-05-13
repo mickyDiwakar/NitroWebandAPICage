@@ -21,7 +21,7 @@ public class loginPage extends  BasePage {
     }
 
     @FindBy(name="q")
-WebElement searchbox;
+    WebElement searchbox;
 
 
 

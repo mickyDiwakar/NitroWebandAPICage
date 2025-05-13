@@ -15,6 +15,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -23,12 +24,7 @@ import java.util.Set;
 public class BasePage{
 
    //private volatile static ConcurrentHashMap map= new ConcurrentHashMap();
-   protected static ThreadLocal<HashMap<String,Object>> sharddata=new ThreadLocal<HashMap<String,Object>>(){
-       @Override
-       protected HashMap<String,Object> initialValue(){
-           return new HashMap<>();
-       }
-   };
+   protected static ThreadLocal<HashMap<String,Object>> sharddata= ThreadLocal.withInitial(() -> new HashMap<>());
 
     public Object getMap(String Key){
       return  sharddata.get().get(Key);
@@ -74,7 +70,7 @@ public void setDriver(){
 
 
     public void enterKeys(WebDriver driver,WebElement ele, String value){
-        WebDriverWait wait =new WebDriverWait(driver,15);
+        WebDriverWait wait =new WebDriverWait(driver, Duration.ofSeconds(15));
         wait.until(ExpectedConditions.elementToBeClickable(ele));
         ele.sendKeys(value);
         // getFinalDriver().findElement(By.name("q")).sendKeys("Test");
@@ -97,9 +93,18 @@ public void setDriver(){
 
     }
     public void waitForPageLoad(WebDriver driver){
-        new WebDriverWait(driver,20).
+        new WebDriverWait(driver,Duration.ofSeconds(15)).
                 until((ExpectedCondition<Boolean>)wd->
                         ((JavascriptExecutor)wd).executeScript("return document.readyState").equals("complete"));
+    }
+    public void waitforajax(WebDriver driver){
+        WebDriverWait wait =new WebDriverWait(driver,Duration.ofSeconds(15)) ;
+        wait.until(new ExpectedCondition<Boolean>() {
+            public Boolean apply(WebDriver driver){
+              return (Boolean) ((JavascriptExecutor)driver).executeScript("return jQuery.active==0");
+            }
+        }
+        );
     }
     public void switchToParticularWindow(WebDriver driver,String window){
         driver.switchTo().window(window);
@@ -119,7 +124,7 @@ public void setDriver(){
     }
     public void switchToChildWindow(WebDriver driver){
         try{
-            new WebDriverWait(driver,20)
+            new WebDriverWait(driver,Duration.ofSeconds(15))
                     .until((ExpectedCondition<Boolean>)wd->
                             wd.getWindowHandles().size()>1);
             Iterator<String>handles=driver.getWindowHandles().iterator();
@@ -139,7 +144,7 @@ public void setDriver(){
 
     }
     public void switchToChildWindow(WebDriver driver,int childwindowindex){
-        WebDriverWait wait=new WebDriverWait(driver,20);
+        WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(10));
         wait.until(ExpectedConditions.numberOfWindowsToBe(childwindowindex));
        Set<String> windowHandles=driver.getWindowHandles();
        Iterator<String> iterator=windowHandles.iterator();

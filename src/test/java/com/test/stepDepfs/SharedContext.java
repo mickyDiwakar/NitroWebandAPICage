@@ -14,6 +14,7 @@ import io.cucumber.java.Scenario;
 import org.openqa.selenium.WebDriver;
 
 import java.io.IOException;
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 public class SharedContext extends BasePage {
@@ -22,7 +23,15 @@ public class SharedContext extends BasePage {
     public  Scenario scn;
 
     public WebDriver driver;
+    @Before
+    public void setupforrestassured(Scenario scenario){
+        scn = scenario;
 
+        setMap("Scenario",scenario);
+        setMap("scName",scenario.getName());
+        System.out.println(scenario.getName());
+
+    }
    // @Before()
 public void setUp(Scenario scenario){
          scn = scenario;
@@ -37,7 +46,7 @@ public void setUp(Scenario scenario){
         extent.createTest(scenario.getName());
         invokeDriver();
         driver.manage().deleteAllCookies();
-        driver.manage().timeouts().implicitlyWait( ManageConfig.getPropertiesConfigurator().implicitTimeout(), TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait( Duration.ofSeconds(10));
 
 
     }
